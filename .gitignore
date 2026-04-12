@@ -17,6 +17,9 @@
 /.next/
 /out/
 
+# next.js build output relocated outside project (Japanese path workaround)
+/Users/
+
 # production
 /build
 
