@@ -312,20 +312,6 @@ class InventoryApp {
     nav('updateProductNameBtn', () => this.updateProductName_());
     nav('deleteProductBtn', () => this.deleteCurrentProduct_());
 
-    const th = document.getElementById('inactivityThresholdSelect');
-    if (th) {
-      th.value = this.inactivityThresholdKey || '3m';
-      th.onchange = () => {
-        const key = String(th.value || '3m').trim();
-        if (!this.isValidInactivityKey_(key)) return;
-        this.saveInactivityThreshold_(key);
-        this.calcPartnerInactivity_();
-        this.renderPartnerList_();
-        if (this.activeView === 'analysis') this.renderAnalysisRanking_();
-        if (this.activeView === 'map') this.renderMapView_();
-      };
-    }
-
     const addStaffBtn = document.getElementById('addStaffBtn');
     if (addStaffBtn) addStaffBtn.onclick = () => {
       const input = document.getElementById('newStaffName');
@@ -678,6 +664,7 @@ class InventoryApp {
       return val === '' ? 0 : parseFloat(val);
     };
     const partnerNo = Number(document.getElementById('remarksPartnerSelect')?.value || 0) || 0;
+    if (v('Ship1F') > 0 && !partnerNo) { alert('卸を入力する場合は取引先を選択してください'); return; }
     const data = {
       date: document.getElementById('inputDate')?.value || new Date().toISOString().split('T')[0],
       tsumeguchi: v('Tsumeguchi'), ship1F: v('Ship1F'), ship2F: v('Ship2F'),

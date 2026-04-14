@@ -515,18 +515,6 @@ export default function Home() {
                 <button id="addStaffBtn" className="btn btn-primary">追加</button>
               </div>
             </div>
-            <div>
-              <div className="filter-label" style={{ marginBottom: 6 }}>要フォロー判定（最終注文からの経過）</div>
-              <select id="inactivityThresholdSelect" className="select-styled" style={{ width: '100%' }}>
-                <option value="1m">1ヶ月</option>
-                <option value="2m">2ヶ月</option>
-                <option value="3m">3ヶ月</option>
-                <option value="6m">6ヶ月</option>
-                <option value="9m">9ヶ月</option>
-                <option value="12m">12ヶ月</option>
-                <option value="1y">1年</option>
-              </select>
-            </div>
             <div style={{ borderTop: '1px solid #fee2e2', paddingTop: 14 }}>
               <div className="filter-label" style={{ marginBottom: 6, color: '#b91c1c' }}>危険な操作</div>
               <button
