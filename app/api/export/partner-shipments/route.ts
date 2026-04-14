@@ -66,7 +66,11 @@ export async function POST(request: NextRequest) {
     const prod = row.json as Product | null;
     if (!prod) continue;
 
-    for (const r of prod.rows ?? []) {
+    const sortedRows = ([...(prod.rows ?? [])] as ProductRow[]).sort((a, b) =>
+      String(a.date ?? '').localeCompare(String(b.date ?? ''), 'ja')
+    );
+
+    for (const r of sortedRows) {
       const d = String(r.date ?? '');
       if (!d) continue;
       if (dateFrom && d < dateFrom) continue;
